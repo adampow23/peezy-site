@@ -1,14 +1,9 @@
 'use client';
 
 import { motion, useReducedMotion } from 'framer-motion';
+import { ListChecks, Plane, ShieldCheck } from 'lucide-react';
 import Container from '@/components/ui/Container';
 import { duration, easing } from '@/lib/motion-config';
-
-const numberBlocks = [
-  { number: '40+', caption: 'hours of moving admin' },
-  { number: '1', caption: 'hour or less, total with Peezy' },
-  { number: '2', caption: 'minutes a day. Done.' },
-];
 
 export default function Spotlight() {
   const reduced = useReducedMotion() ?? false;
@@ -25,82 +20,30 @@ export default function Spotlight() {
         transition: { duration: 0.6, ease: easing.smooth },
       };
 
-  const numbersContainer = reduced
+  const cardsContainer = {
+    hidden: {},
+    visible: {
+      transition: reduced ? {} : { staggerChildren: 0.12 },
+    },
+  };
+
+  const cardVariants = reduced
     ? {
         hidden: { opacity: 0 },
-        visible: {
-          opacity: 1,
-          transition: { duration: duration.quick },
-        },
+        visible: { opacity: 1, transition: { duration: duration.quick } },
       }
     : {
-        hidden: {},
-        visible: {
-          transition: { staggerChildren: 0.15 },
-        },
-      };
-
-  const blockVariants = reduced
-    ? { hidden: {}, visible: {} }
-    : {
-        hidden: { opacity: 0, y: 24 },
+        hidden: { opacity: 0, y: 20 },
         visible: {
           opacity: 1,
           y: 0,
-          transition: { duration: 0.7, ease: easing.smooth },
+          transition: { duration: 0.6, ease: easing.smooth },
         },
-      };
-
-  const numberScaleVariants = reduced
-    ? { hidden: {}, visible: {} }
-    : {
-        hidden: { scale: 0.95 },
-        visible: {
-          scale: 1,
-          transition: { duration: 0.9, ease: easing.smooth },
-        },
-      };
-
-  const disclaimerVariants = reduced
-    ? { hidden: {}, visible: {} }
-    : {
-        hidden: { opacity: 0 },
-        visible: {
-          opacity: 1,
-          transition: { duration: 0.5, delay: 0.4 },
-        },
-      };
-
-  const pinkyMotion = reduced
-    ? {
-        initial: { opacity: 0 },
-        whileInView: { opacity: 1 },
-        transition: { duration: duration.quick },
-      }
-    : {
-        initial: {
-          opacity: 0,
-          y: 24,
-          scale: 0.97,
-          boxShadow: '0 0 0 rgba(0,0,0,0)',
-        },
-        whileInView: {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          boxShadow: '0 10px 40px rgba(0, 0, 0, 0.06)',
-        },
-        transition: { duration: 0.9, ease: easing.dramatic },
       };
 
   return (
     <section className="bg-off-white border-b border-grey-100 py-32 md:py-42">
       <Container>
-        {/*
-         * Spotlight H2 uses text-display-lg (not -xl), so the 720px
-         * container is safe here. See HowItWorks for the widened-container
-         * pattern that applies to text-display-xl H2s.
-         */}
         <div className="max-w-[720px] mx-auto text-center">
           <motion.h2
             className="text-display-lg text-grey-900"
@@ -112,59 +55,61 @@ export default function Spotlight() {
         </div>
 
         <motion.div
-          className="mt-24 max-w-[720px] mx-auto text-center"
+          className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-stretch"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
-          variants={numbersContainer}
+          variants={cardsContainer}
         >
-          {numberBlocks.map((block, i) => (
-            <motion.div
-              key={block.number}
-              className={i === 0 ? '' : 'mt-20'}
-              variants={blockVariants}
-            >
-              <motion.p
-                className="text-display-xl font-black text-grey-900"
-                variants={numberScaleVariants}
-              >
-                {block.number}
-              </motion.p>
-              <p className="text-body-lg text-grey-500 mt-4">
-                {block.caption}
+          {/* Card 1: Never forget */}
+          <motion.div className="flex flex-col" variants={cardVariants}>
+            <div aria-hidden="true" className="hidden md:block h-[36px] mb-4" />
+            <div className="bg-white border border-grey-200 rounded-lg p-8 md:p-10 flex flex-col items-start gap-6 flex-1">
+              <ListChecks size={40} strokeWidth={1.5} className="text-ink" />
+              <h3 className="text-display-md text-ink">
+                Never worry about forgetting something.
+              </h3>
+              <p className="text-body-lg text-grey-700 leading-relaxed">
+                Every task you need. None that you don&rsquo;t. It&rsquo;s not a checklist — it&rsquo;s your checklist.
               </p>
-            </motion.div>
-          ))}
-
-          <motion.div
-            className="border-t border-grey-200 max-w-[200px] mx-auto mt-16"
-            variants={disclaimerVariants}
-          />
-          <motion.p
-            className="text-body-sm text-grey-400 italic mt-6 text-center"
-            variants={disclaimerVariants}
-          >
-            Based on averages
-          </motion.p>
-        </motion.div>
-
-        <div className="mt-20">
-          <motion.div
-            className="mx-auto max-w-[720px] text-center rounded-xl bg-white shadow-soft px-8 py-16 md:px-16 md:py-20"
-            viewport={{ once: true, amount: 0.4 }}
-            {...pinkyMotion}
-          >
-            <h3 className="text-display-lg text-grey-900">
-              Someone in your corner. Finally.
-            </h3>
-            <p className="text-body-lg text-grey-500 mt-6">
-              Peezy vendors don&rsquo;t buy their way onto the platform. They
-              earn their spot, and they keep it by showing up. If one of them
-              lets you down, we handle it. If they won&rsquo;t make it right,
-              we will. That&rsquo;s the Peezy Pinky Promise.
-            </p>
+            </div>
           </motion.div>
-        </div>
+
+          {/* Card 2: Autopilot */}
+          <motion.div className="flex flex-col" variants={cardVariants}>
+            <div aria-hidden="true" className="hidden md:block h-[36px] mb-4" />
+            <div className="bg-white border border-grey-200 rounded-lg p-8 md:p-10 flex flex-col items-start gap-6 flex-1">
+              <Plane size={40} strokeWidth={1.5} className="text-ink" />
+              <h3 className="text-display-md text-ink">
+                Your move, on autopilot.
+              </h3>
+              <p className="text-body-lg text-grey-700 leading-relaxed">
+                You shouldn&rsquo;t have to put your life on hold just because you&rsquo;re moving. We handle everything we can — you focus on what matters.
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Card 3: Pinky Promise — accented */}
+          <motion.div className="flex flex-col" variants={cardVariants}>
+            <div className="text-caption uppercase text-ink font-semibold mb-4 h-[36px] flex items-center">
+              THE ONE THAT SETS US APART
+            </div>
+            <div className="bg-white border border-grey-200 border-t-2 border-t-ink rounded-lg p-8 md:p-10 flex flex-col items-start gap-6 shadow-soft flex-1">
+              <ShieldCheck size={40} strokeWidth={1.5} className="text-ink" />
+              <h3 className="text-display-md text-ink">
+                Someone in your corner. Finally.
+              </h3>
+              <div className="text-body-lg text-grey-700 leading-relaxed space-y-4">
+                <p>
+                  Peezy vendors don&rsquo;t buy their way onto the platform. They earn their spot, and they keep it by showing up. If one of them lets you down, we handle it. If they won&rsquo;t make it right, we will.
+                </p>
+                <p className="font-semibold">
+                  That&rsquo;s the Peezy Pinky Promise.
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
       </Container>
     </section>
   );

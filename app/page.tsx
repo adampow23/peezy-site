@@ -3,6 +3,8 @@ import Hero from '@/components/sections/Hero';
 import Agitation from '@/components/sections/Agitation';
 import HowItWorks from '@/components/sections/HowItWorks';
 import Spotlight from '@/components/sections/Spotlight';
+import NumbersBreak from '@/components/sections/NumbersBreak';
+import FeatureGrid from '@/components/sections/FeatureGrid';
 import FounderLetter from '@/components/sections/FounderLetter';
 import FinalCTA from '@/components/sections/FinalCTA';
 import Footer from '@/components/layout/Footer';
@@ -40,6 +42,8 @@ export default function Home() {
         <Agitation />
         <HowItWorks />
         <Spotlight />
+        <NumbersBreak />
+        <FeatureGrid />
         <FounderLetter />
         <FinalCTA />
         <Footer />
