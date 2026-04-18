@@ -4,11 +4,13 @@ import { motion, useReducedMotion } from 'framer-motion';
 import Container from '@/components/ui/Container';
 import { duration, easing } from '@/lib/motion-config';
 
-interface SpotlightProps {
-  hasVideoSource?: boolean;
-}
+const numberBlocks = [
+  { number: '40+', caption: 'hours of moving admin' },
+  { number: '1', caption: 'hour or less, total with Peezy' },
+  { number: '2', caption: 'minutes a day. Done.' },
+];
 
-export default function Spotlight({ hasVideoSource = false }: SpotlightProps = {}) {
+export default function Spotlight() {
   const reduced = useReducedMotion() ?? false;
 
   const h2Motion = reduced
@@ -23,36 +25,49 @@ export default function Spotlight({ hasVideoSource = false }: SpotlightProps = {
         transition: { duration: 0.6, ease: easing.smooth },
       };
 
-  const videoMotion = reduced
-    ? {
-        initial: { opacity: 0 },
-        whileInView: { opacity: 1 },
-        transition: { duration: duration.quick },
-      }
-    : {
-        initial: { opacity: 0, scale: 0.96 },
-        whileInView: { opacity: 1, scale: 1 },
-        transition: { duration: 0.8, ease: easing.smooth },
-      };
-
-  const featuresContainer = {
-    hidden: {},
-    visible: {
-      transition: reduced ? {} : { staggerChildren: 0.15 },
-    },
-  };
-
-  const featureVariants = reduced
+  const numbersContainer = reduced
     ? {
         hidden: { opacity: 0 },
-        visible: { opacity: 1, transition: { duration: duration.quick } },
+        visible: {
+          opacity: 1,
+          transition: { duration: duration.quick },
+        },
       }
     : {
-        hidden: { opacity: 0, y: 20 },
+        hidden: {},
+        visible: {
+          transition: { staggerChildren: 0.15 },
+        },
+      };
+
+  const blockVariants = reduced
+    ? { hidden: {}, visible: {} }
+    : {
+        hidden: { opacity: 0, y: 24 },
         visible: {
           opacity: 1,
           y: 0,
-          transition: { duration: 0.6, ease: easing.smooth },
+          transition: { duration: 0.7, ease: easing.smooth },
+        },
+      };
+
+  const numberScaleVariants = reduced
+    ? { hidden: {}, visible: {} }
+    : {
+        hidden: { scale: 0.95 },
+        visible: {
+          scale: 1,
+          transition: { duration: 0.9, ease: easing.smooth },
+        },
+      };
+
+  const disclaimerVariants = reduced
+    ? { hidden: {}, visible: {} }
+    : {
+        hidden: { opacity: 0 },
+        visible: {
+          opacity: 1,
+          transition: { duration: 0.5, delay: 0.4 },
         },
       };
 
@@ -97,81 +112,40 @@ export default function Spotlight({ hasVideoSource = false }: SpotlightProps = {
         </div>
 
         <motion.div
-          className="mt-12 mx-auto w-full max-w-[400px]"
-          viewport={{ once: true, amount: 0.3 }}
-          {...videoMotion}
-        >
-          {/*
-           * PHASE 4 TODO: when real video is wired in, trigger video.play()
-           * via IntersectionObserver at amount 0.8 here (and pause when
-           * leaving viewport to conserve battery).
-           */}
-          <div className="relative rounded-xl overflow-hidden shadow-hero aspect-[9/19.5]">
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              poster="/images/spotlight-poster.svg"
-              aria-label="Peezy app spotlight"
-              className="w-full h-full object-cover"
-            />
-            {!hasVideoSource && (
-              <div
-                aria-hidden="true"
-                className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none"
-              >
-                <svg
-                  width="88"
-                  height="88"
-                  viewBox="0 0 88 88"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <circle
-                    cx="44"
-                    cy="44"
-                    r="43"
-                    fill="none"
-                    stroke="var(--color-grey-400)"
-                    strokeWidth="2"
-                  />
-                  <path d="M32 26 L64 44 L32 62 Z" fill="var(--color-grey-400)" />
-                </svg>
-                <p className="mt-6 text-grey-500 text-[14px] font-semibold tracking-[0.2em]">
-                  SPOTLIGHT
-                </p>
-              </div>
-            )}
-          </div>
-        </motion.div>
-
-        <motion.div
-          className="mt-24 grid grid-cols-1 md:grid-cols-2 gap-12"
+          className="mt-24 max-w-[720px] mx-auto text-center"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
-          variants={featuresContainer}
+          variants={numbersContainer}
         >
-          <motion.div className="flex flex-col h-full" variants={featureVariants}>
-            <h3 className="text-display-md text-grey-900">
-              Never worry about forgetting something.
-            </h3>
-            <p className="text-body-lg text-grey-500 mt-4">
-              Every task you need. None that you don&rsquo;t. It&rsquo;s not a
-              checklist — it&rsquo;s your checklist.
-            </p>
-          </motion.div>
-          <motion.div className="flex flex-col h-full" variants={featureVariants}>
-            <h3 className="text-display-md text-grey-900">
-              Your move, on autopilot.
-            </h3>
-            <p className="text-body-lg text-grey-500 mt-4">
-              You shouldn&rsquo;t have to put your life on hold just because
-              you&rsquo;re moving. We handle everything we can — you focus on
-              what matters.
-            </p>
-          </motion.div>
+          {numberBlocks.map((block, i) => (
+            <motion.div
+              key={block.number}
+              className={i === 0 ? '' : 'mt-20'}
+              variants={blockVariants}
+            >
+              <motion.p
+                className="text-display-xl font-black text-grey-900"
+                variants={numberScaleVariants}
+              >
+                {block.number}
+              </motion.p>
+              <p className="text-body-lg text-grey-500 mt-4">
+                {block.caption}
+              </p>
+            </motion.div>
+          ))}
+
+          <motion.div
+            className="border-t border-grey-200 max-w-[200px] mx-auto mt-16"
+            variants={disclaimerVariants}
+          />
+          <motion.p
+            className="text-body-sm text-grey-400 italic mt-6 text-center"
+            variants={disclaimerVariants}
+          >
+            Based on averages
+          </motion.p>
         </motion.div>
 
         <div className="mt-20">

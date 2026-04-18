@@ -5,12 +5,13 @@ import Container from '@/components/ui/Container';
 import { duration, easing } from '@/lib/motion-config';
 
 const paragraphs = [
-  'I spent the better part of a decade in the moving industry. Not building software — on the ground, working directly with people in the middle of their moves.',
-  'Here’s what I learned: the hardest part of moving isn’t the logistics. It’s the feeling that you’re in it alone. When someone had a person in their corner — someone who knew what to do and when to do it — the entire experience changed. Not because the physical move got easier, but because they stopped carrying the mental weight by themselves.',
-  'That part was simple. Be there. Know your stuff. Care about the outcome.',
-  'But here’s the ugly truth about service industries: they don’t reward the companies that care. They reward the companies that spend the most on advertising. The best moving company in your city probably isn’t the one at the top of Google. It’s the one that spent its money on better trucks, better training, and better people instead of paying for clicks. And because of that, you’ll probably never find them.',
-  'That’s completely backwards. And it’s the reason I built Peezy the way I did.',
-  'I spent years helping people one move at a time. Peezy lets me help millions. That’s the whole point.',
+  'I spent nearly a decade in the moving industry — not building software, but working directly with people in the middle of their moves.',
+  'Here’s what I learned: the hardest part isn’t the logistics. It’s the feeling that you’re in it alone.',
+  'When someone had a person in their corner — someone who knew what to do and when to do it — the entire experience changed. Not because the move got easier, but because they weren’t carrying the mental weight alone.',
+  'That part was simple: be there, know your stuff, care about the outcome.',
+  'But the industry doesn’t reward that. It rewards whoever spends the most on ads. The best moving company in your city probably isn’t at the top of Google — it’s the one investing in better people, better training, and better service instead of paying for clicks. And because of that, most people never find them.',
+  'That’s backwards. And it’s why I built Peezy.',
+  'I spent years helping people one move at a time. Now I get to help millions.',
 ];
 
 export default function FounderLetter() {
@@ -106,8 +107,9 @@ export default function FounderLetter() {
             viewport={{ once: true, amount: 0.5 }}
             {...kickerMotion}
           >
-            Our users deserve the best service. And the best service deserves
-            our users.
+            Our users deserve the best service.
+            <br />
+            And the best service deserves our users.
           </motion.p>
 
           <motion.div

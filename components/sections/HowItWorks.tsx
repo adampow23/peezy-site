@@ -137,7 +137,7 @@ export default function HowItWorks() {
             viewport={{ once: true, amount: 0.25 }}
             {...subtitleMotion}
           >
-            40+ hours of moving admin, handled in under an hour total.
+            40+ hours of moving admin, handled in under an hour.
           </motion.p>
         </div>
 

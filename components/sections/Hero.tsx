@@ -110,11 +110,11 @@ export default function Hero() {
               The first moving app that actually does the work for you.
             </motion.p>
             <motion.p
-              className="text-body-xl text-grey-700 mt-8 max-w-[560px]"
+              className="text-body-xl text-grey-600 leading-relaxed mt-6 max-w-[580px]"
               {...fadeUp(1.0)}
             >
-              Tell us about your move. We build the plan, coordinate the vendors,
-              and handle what we can on your behalf. You live your life.
+              No scrambling. No missed steps. No last-minute chaos. Just a
+              smoother move, from start to finish.
             </motion.p>
             <motion.div
               className="mt-10"
