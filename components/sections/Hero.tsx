@@ -4,7 +4,7 @@ import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion
 import { useRef } from 'react';
 import Image from 'next/image';
 import Container from '@/components/ui/Container';
-import Button from '@/components/ui/Button';
+import WaitlistForm from '@/components/ui/WaitlistForm';
 import { duration, easing } from '@/lib/motion-config';
 
 const H1_TEXT = 'Moving just got a hell of a lot easier.';
@@ -126,7 +126,10 @@ export default function Hero() {
                 ease: easing.smooth,
               }}
             >
-              <Button href="#download">Try Peezy for free</Button>
+              <WaitlistForm source="hero" />
+              <p className="text-body-sm text-grey-500 mt-4 max-w-[420px]">
+                Moving this summer? We&rsquo;ll send you the link the day Peezy launches.
+              </p>
             </motion.div>
           </div>
           <motion.div

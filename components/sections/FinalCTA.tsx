@@ -2,10 +2,10 @@
 
 import { motion, useReducedMotion } from 'framer-motion';
 import Container from '@/components/ui/Container';
-import Button from '@/components/ui/Button';
+import WaitlistForm from '@/components/ui/WaitlistForm';
 import { duration, easing } from '@/lib/motion-config';
 
-const H2_TEXT = 'The hard part\u2019s over.';
+const H2_TEXT = 'Moving this summer?';
 
 function AnimatedH2({ reduced }: { reduced: boolean }) {
   if (reduced) {
@@ -96,22 +96,11 @@ export default function FinalCTA() {
         },
       };
 
-  const disclosureVariants = reduced
-    ? {
-        hidden: { opacity: 0 },
-        visible: { opacity: 1, transition: { duration: duration.quick } },
-      }
-    : {
-        hidden: { opacity: 0, y: 12 },
-        visible: {
-          opacity: 1,
-          y: 0,
-          transition: { duration: 0.5, delay: 1.1, ease: easing.smooth },
-        },
-      };
-
   return (
-    <section className="bg-off-white border-b border-grey-100 py-32 md:py-50">
+    <section
+      id="waitlist"
+      className="bg-off-white border-b border-grey-100 py-32 md:py-50 scroll-mt-24"
+    >
       <Container>
         {/*
          * H2 uses text-display-xl — apply the widened-container pattern
@@ -130,23 +119,14 @@ export default function FinalCTA() {
             className="text-body-xl text-grey-500 mt-8 max-w-[640px] mx-auto"
             variants={subtitleVariants}
           >
-            Download the app. The 3-minute assessment builds your plan.
-            Try Peezy+ free for 3 days — cancel anytime.
+            Peezy is launching soon. Drop your email and you&rsquo;ll get the
+            heads-up the moment it&rsquo;s live. No pre-launch drip, no
+            marketing emails &mdash; just the launch.
           </motion.p>
 
-          <motion.div className="mt-12" variants={buttonVariants}>
-            <Button href="#download" size="large">
-              Try Peezy for free
-            </Button>
+          <motion.div className="mt-12 flex justify-center" variants={buttonVariants}>
+            <WaitlistForm source="footer" size="large" align="center" />
           </motion.div>
-
-          <motion.p
-            className="text-body-sm text-grey-400 mt-8 max-w-[560px] mx-auto"
-            variants={disclosureVariants}
-          >
-            Peezy+ is an auto-renewing subscription. Cancel anytime in Settings
-            &gt; Apple ID &gt; Subscriptions.
-          </motion.p>
         </motion.div>
       </Container>
     </section>
