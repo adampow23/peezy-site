@@ -8,6 +8,7 @@ import FeatureGrid from '@/components/sections/FeatureGrid';
 import FounderLetter from '@/components/sections/FounderLetter';
 import FinalCTA from '@/components/sections/FinalCTA';
 import Footer from '@/components/layout/Footer';
+import Header from '@/components/layout/Header';
 
 const structuredData = {
   '@context': 'https://schema.org',
@@ -37,7 +38,8 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-      <main>
+      <main id="top">
+        <Header />
         <Hero />
         <Agitation />
         <HowItWorks />

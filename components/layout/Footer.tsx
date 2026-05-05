@@ -46,9 +46,14 @@ export default function Footer() {
       <Container>
         <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-10 md:gap-8">
           <div>
-            <p className="font-black text-ink text-display-md leading-none tracking-[-0.03em]">
-              Peezy
-            </p>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/peezy-wordmark.svg"
+              alt="Peezy"
+              width={94}
+              height={32}
+              className="h-7 md:h-8 w-auto"
+            />
             <p className="text-body-sm text-grey-500 mt-3">
               Moving just got a hell of a lot easier.
             </p>
