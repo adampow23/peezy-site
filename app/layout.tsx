@@ -5,24 +5,24 @@ import './globals.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://peezymove.com'),
-  title: 'Peezy | Moving just got a hell of a lot easier.',
+  title: 'Peezy — Moving just got a hell of a lot easier',
   description:
-    'The first moving app that actually does the work for you. Tell us about your move — we build the plan, coordinate the vendors, and handle what we can on your behalf.',
+    'The only platform built to handle every part of your move. Vetted companies. Personalized plans. Built around accountability, not ad spend.',
   keywords: [
-    'moving app',
+    'moving platform',
     'moving concierge',
-    'moving checklist',
-    'iOS moving app',
-    'move planning',
     'moving assistant',
+    'vetted movers',
+    'personalized moving plan',
+    'iOS moving app',
   ],
   authors: [{ name: 'Peezy Move LLC' }],
   creator: 'Peezy Move LLC',
   publisher: 'Peezy Move LLC',
   openGraph: {
-    title: 'Peezy | Moving just got a hell of a lot easier.',
+    title: 'Peezy — Moving just got a hell of a lot easier',
     description:
-      'The first moving app that actually does the work for you. Tell us about your move — we build the plan, coordinate the vendors, and handle what we can on your behalf.',
+      'The only platform built to handle every part of your move. Vetted companies. Personalized plans. Built around accountability, not ad spend.',
     url: 'https://peezymove.com',
     siteName: 'Peezy',
     type: 'website',
@@ -38,9 +38,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Peezy | Moving just got a hell of a lot easier.',
+    title: 'Peezy — Moving just got a hell of a lot easier',
     description:
-      'The first moving app that actually does the work for you.',
+      'The only platform built to handle every part of your move. Vetted companies. Personalized plans.',
     images: ['/twitter-image.png'],
   },
   icons: {

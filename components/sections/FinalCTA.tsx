@@ -5,7 +5,7 @@ import Container from '@/components/ui/Container';
 import WaitlistForm from '@/components/ui/WaitlistForm';
 import { duration, easing } from '@/lib/motion-config';
 
-const H2_TEXT = 'Moving this summer?';
+const H2_TEXT = 'Stop guessing. Start moving.';
 
 function AnimatedH2({ reduced }: { reduced: boolean }) {
   if (reduced) {
@@ -63,20 +63,6 @@ function AnimatedH2({ reduced }: { reduced: boolean }) {
 export default function FinalCTA() {
   const reduced = useReducedMotion() ?? false;
 
-  const subtitleVariants = reduced
-    ? {
-        hidden: { opacity: 0 },
-        visible: { opacity: 1, transition: { duration: duration.quick } },
-      }
-    : {
-        hidden: { opacity: 0, y: 20 },
-        visible: {
-          opacity: 1,
-          y: 0,
-          transition: { duration: 0.6, delay: 0.4, ease: easing.smooth },
-        },
-      };
-
   const buttonVariants = reduced
     ? {
         hidden: { opacity: 0 },
@@ -91,7 +77,7 @@ export default function FinalCTA() {
             type: 'spring' as const,
             stiffness: 200,
             damping: 12,
-            delay: 0.7,
+            delay: 0.5,
           },
         },
       };
@@ -115,17 +101,14 @@ export default function FinalCTA() {
         >
           <AnimatedH2 reduced={reduced} />
 
-          <motion.p
-            className="text-body-xl text-grey-500 mt-8 max-w-[640px] mx-auto"
-            variants={subtitleVariants}
-          >
-            Peezy is launching soon. Drop your email and you&rsquo;ll get the
-            heads-up the moment it&rsquo;s live. No pre-launch drip, no
-            marketing emails &mdash; just the launch.
-          </motion.p>
-
           <motion.div className="mt-12 flex justify-center" variants={buttonVariants}>
-            <WaitlistForm source="footer" size="large" align="center" />
+            {/* TODO: swap to "Get the app" + App Store link on launch day */}
+            <WaitlistForm
+              source="footer"
+              size="large"
+              align="center"
+              ctaLabel="Join the launch list"
+            />
           </motion.div>
         </motion.div>
       </Container>

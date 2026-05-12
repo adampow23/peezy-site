@@ -1,28 +1,23 @@
 import Script from 'next/script';
 import Hero from '@/components/sections/Hero';
-import Agitation from '@/components/sections/Agitation';
+import Problem from '@/components/sections/Problem';
+import Solution from '@/components/sections/Solution';
 import HowItWorks from '@/components/sections/HowItWorks';
-import Spotlight from '@/components/sections/Spotlight';
-import NumbersBreak from '@/components/sections/NumbersBreak';
-import FeatureGrid from '@/components/sections/FeatureGrid';
-import FounderLetter from '@/components/sections/FounderLetter';
+import WhyDifferent from '@/components/sections/WhyDifferent';
 import FinalCTA from '@/components/sections/FinalCTA';
 import Footer from '@/components/layout/Footer';
 import Header from '@/components/layout/Header';
 
 const structuredData = {
   '@context': 'https://schema.org',
-  '@type': 'MobileApplication',
+  '@type': 'SoftwareApplication',
   name: 'Peezy',
   description:
-    'The first moving app that actually does the work for you.',
-  operatingSystem: 'iOS',
+    'The only platform built to handle every part of your move. Vetted companies. Personalized plans. Built around accountability, not ad spend.',
+  url: 'https://peezymove.com',
+  image: 'https://peezymove.com/og-image.png',
   applicationCategory: 'LifestyleApplication',
-  offers: {
-    '@type': 'Offer',
-    price: '49.99',
-    priceCurrency: 'USD',
-  },
+  operatingSystem: 'iOS',
   publisher: {
     '@type': 'Organization',
     name: 'Peezy Move LLC',
@@ -41,12 +36,10 @@ export default function Home() {
       <main id="top">
         <Header />
         <Hero />
-        <Agitation />
+        <Problem />
+        <Solution />
         <HowItWorks />
-        <Spotlight />
-        <NumbersBreak />
-        <FeatureGrid />
-        <FounderLetter />
+        <WhyDifferent />
         <FinalCTA />
         <Footer />
       </main>

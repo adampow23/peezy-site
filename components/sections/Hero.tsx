@@ -104,17 +104,11 @@ export default function Hero() {
           <div className="min-w-0">
             <AnimatedH1 reduced={reduced} />
             <motion.p
-              className="text-display-md text-grey-500 italic mt-3"
-              {...fadeUp(0.8)}
-            >
-              The first moving app that actually does the work for you.
-            </motion.p>
-            <motion.p
               className="text-body-xl text-grey-600 leading-relaxed mt-6 max-w-[580px]"
-              {...fadeUp(1.0)}
+              {...fadeUp(0.9)}
             >
-              No scrambling. No missed steps. No last-minute chaos. Just a
-              smoother move, from start to finish.
+              Peezy is the only platform built to handle every part of your
+              move &mdash; and to actually be on your side while doing it.
             </motion.p>
             <motion.div
               className="mt-10"
@@ -122,14 +116,12 @@ export default function Hero() {
               animate={reduced ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1 }}
               transition={{
                 duration: reduced ? duration.quick : 0.5,
-                delay: 1.3,
+                delay: 1.2,
                 ease: easing.smooth,
               }}
             >
-              <WaitlistForm source="hero" />
-              <p className="text-body-sm text-grey-500 mt-4 max-w-[420px]">
-                Moving this summer? We&rsquo;ll send you the link the day Peezy launches.
-              </p>
+              {/* TODO: swap to "Get the app" + App Store link on launch day */}
+              <WaitlistForm source="hero" ctaLabel="Join the launch list" />
             </motion.div>
           </div>
           <motion.div
