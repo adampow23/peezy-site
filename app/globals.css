@@ -1,168 +1,79 @@
 @import "tailwindcss";
+@import "@fontsource-variable/bricolage-grotesque";
+@import "@fontsource-variable/instrument-sans";
 
 @theme {
-  /* Colors — Whites */
-  --color-white: #FFFFFF;
-  --color-off-white: #FAFAFA;
-
-  /* Colors — Greys (locked 7-step scale) */
-  --color-grey-50: #F5F5F7;
-  --color-grey-100: #EBEBED;
-  --color-grey-200: #D2D2D7;
-  --color-grey-400: #86868B;
-  --color-grey-500: #6E6E73;
-  --color-grey-700: #424245;
-  --color-grey-900: #1D1D1F;
-
-  /* Brand accent — deep ink (used sparingly) */
-  --color-ink: #0D1A33;
-
-  /* Typography families */
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-
-  /* Custom spacing extensions (8px-base) */
-  --spacing-18: 72px;
-  --spacing-22: 88px;
-  --spacing-26: 104px;
-  --spacing-30: 120px;
-  --spacing-34: 136px;
-  --spacing-38: 152px;
-  --spacing-42: 168px;
-  --spacing-46: 184px;
-  --spacing-50: 200px;
-
-  /* Border radius */
-  --radius-sm: 8px;
-  --radius-md: 16px;
-  --radius-lg: 24px;
-  --radius-xl: 40px;
-
-  /* Shadows — wide spread, very low opacity (Apple-style) */
-  --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.04);
-  --shadow-soft: 0 10px 40px rgba(0, 0, 0, 0.06);
-  --shadow-lifted: 0 20px 60px rgba(0, 0, 0, 0.08);
-  --shadow-hero: 0 30px 80px rgba(0, 0, 0, 0.10);
-
-  /* Container max width */
-  --container-max: 1200px;
+  --color-ink: #17150E;
+  --color-ink-soft: #55523F;
+  --color-paper: #FBFAF6;
+  --color-surface: #FFFFFF;
+  --color-line: #E7E4D8;
+  --color-yellow: #FFC233;
+  --color-yellow-deep: #E3A70F;
+  --color-ok: #1F7A3D;
+  --font-display: "Bricolage Grotesque Variable", -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Instrument Sans Variable", -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --shadow-lift: 0 24px 60px -24px rgb(23 21 14 / 0.18);
+  --radius-btn: 14px;
+  --radius-card: 20px;
+  --radius-device: 44px;
 }
 
-/* Custom responsive typography utilities */
-@utility text-display-hero {
-  font-size: clamp(56px, 7vw, 96px);
-  line-height: 1.02;
-  letter-spacing: -0.04em;
-  font-weight: 900;
+html { scroll-behavior: smooth; }
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
 }
 
-@utility text-display-xl {
-  font-size: clamp(40px, 5vw, 72px);
-  line-height: 1.05;
-  letter-spacing: -0.035em;
-  font-weight: 900;
+.font-display { font-family: var(--font-display); font-weight: 800; letter-spacing: -0.02em; }
+
+.h-hero { font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 1.05; }
+.h-2 { font-size: clamp(1.9rem, 3.5vw, 2.75rem); line-height: 1.1; }
+.h-3 { font-size: 1.375rem; font-weight: 600; line-height: 1.3; }
+.body-lg { font-size: 1.1875rem; line-height: 1.6; }
+.eyebrow {
+  font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.04em;
+  text-transform: uppercase; color: var(--color-yellow-deep);
 }
 
-@utility text-display-lg {
-  font-size: clamp(32px, 4vw, 56px);
-  line-height: 1.1;
-  letter-spacing: -0.03em;
-  font-weight: 800;
-}
+:focus-visible { outline: 2px solid var(--color-ink); outline-offset: 3px; border-radius: 2px; }
 
-@utility text-display-md {
-  font-size: clamp(24px, 3vw, 40px);
-  line-height: 1.15;
-  letter-spacing: -0.025em;
-  font-weight: 700;
-}
+/* ---------- Reveal (the one scroll effect) ---------- */
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1), transform 0.55s cubic-bezier(0.22, 1, 0.36, 1); transition-delay: var(--reveal-delay, 0ms); }
+.reveal.is-in { opacity: 1; transform: none; }
 
-@utility text-body-xl {
-  font-size: clamp(20px, 2.2vw, 24px);
-  line-height: 1.5;
-  letter-spacing: -0.01em;
-  font-weight: 500;
-}
+/* ---------- Hero load sequence ---------- */
+@keyframes maskUp { from { clip-path: inset(0 0 100% 0); transform: translateY(20px); } to { clip-path: inset(0 0 -10% 0); transform: none; } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes riseIn { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+.hero-line { animation: maskUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.hero-line-2 { animation-delay: 90ms; }
+.hero-after { animation: fadeIn 0.6s ease both; animation-delay: 350ms; }
+.hero-device { animation: riseIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; animation-delay: 500ms; }
 
-@utility text-body-lg {
-  font-size: clamp(17px, 1.8vw, 20px);
-  line-height: 1.6;
-  font-weight: 400;
-}
+/* ---------- Section 5 checkmark draw ---------- */
+.check-path { stroke-dasharray: 26; stroke-dashoffset: 26; }
+.reveal.is-in .check-path { animation: drawCheck 0.4s ease-out forwards; animation-delay: 150ms; }
+@keyframes drawCheck { to { stroke-dashoffset: 0; } }
 
-@utility text-caption {
-  font-size: 12px;
-  line-height: 1.4;
-  letter-spacing: 0.05em;
-  font-weight: 600;
-}
+/* ---------- FAQ panel ---------- */
+.faq-panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.25s cubic-bezier(0.22, 1, 0.36, 1); }
+.faq-panel[data-open="true"] { grid-template-rows: 1fr; }
+.faq-panel > div { overflow: hidden; }
+.faq-chevron { transition: transform 0.2s ease; }
+[aria-expanded="true"] .faq-chevron { transform: rotate(180deg); }
 
-/* Base styles */
-@layer base {
-  html {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
-    overflow-x: clip;
-  }
+/* ---------- Header ---------- */
+.header-solid { background: color-mix(in srgb, var(--color-paper) 92%, transparent); backdrop-filter: blur(12px); border-bottom: 1px solid var(--color-line); }
 
-  body {
-    background-color: var(--color-white);
-    color: var(--color-grey-900);
-    font-family: var(--font-sans);
-    font-feature-settings: 'ss01', 'cv01', 'cv11';
-    overflow-x: clip;
-  }
-
-  /* Lenis smooth scroll classes */
-  html.lenis,
-  html.lenis body {
-    height: auto;
-  }
-
-  .lenis.lenis-smooth {
-    scroll-behavior: auto !important;
-  }
-
-  .lenis.lenis-smooth [data-lenis-prevent] {
-    overscroll-behavior: contain;
-  }
-
-  .lenis.lenis-stopped {
-    overflow: hidden;
-  }
-
-  /* Respect reduced motion */
-  @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-      scroll-behavior: auto !important;
-    }
-  }
-}
-
-@layer components {
-  .container-padded {
-    max-width: var(--container-max);
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
-
-  @media (min-width: 768px) {
-    .container-padded {
-      padding-left: 2rem;
-      padding-right: 2rem;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .container-padded {
-      padding-left: 3rem;
-      padding-right: 3rem;
-    }
-  }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .hero-line, .hero-line-2, .hero-after, .hero-device { animation: none; }
+  .check-path { stroke-dashoffset: 0; animation: none; }
+  .faq-panel, .faq-chevron { transition: none; }
 }

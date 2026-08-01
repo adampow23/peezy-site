@@ -1,74 +1,39 @@
-import type { Metadata } from 'next';
-import { inter } from '@/lib/fonts';
-import SmoothScroll from '@/components/layout/SmoothScroll';
-import './globals.css';
+import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/react";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import { SITE_URL } from "@/lib/site";
+import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://peezymove.com'),
-  title: 'Peezy — Moving just got a hell of a lot easier',
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "Peezy — Your Moving Concierge",
+    template: "%s — Peezy",
+  },
   description:
-    'The only platform built to handle every part of your move. Vetted companies. Personalized plans. Built around accountability, not ad spend.',
-  keywords: [
-    'moving platform',
-    'moving concierge',
-    'moving assistant',
-    'vetted movers',
-    'personalized moving plan',
-    'iOS moving app',
-  ],
-  authors: [{ name: 'Peezy Move LLC' }],
-  creator: 'Peezy Move LLC',
-  publisher: 'Peezy Move LLC',
+    "Peezy learns your move in three minutes, builds your exact plan, and hands you a few tasks a day until it's done. The ones you dread? Peezy handles those for you.",
   openGraph: {
-    title: 'Peezy — Moving just got a hell of a lot easier',
-    description:
-      'The only platform built to handle every part of your move. Vetted companies. Personalized plans. Built around accountability, not ad spend.',
-    url: 'https://peezymove.com',
-    siteName: 'Peezy',
-    type: 'website',
-    locale: 'en_US',
-    images: [
-      {
-        url: '/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Peezy — Moving just got a hell of a lot easier.',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Peezy — Moving just got a hell of a lot easier',
-    description:
-      'The only platform built to handle every part of your move. Vetted companies. Personalized plans.',
-    images: ['/twitter-image.png'],
-  },
-  icons: {
-    icon: '/icon.svg',
-    apple: '/apple-touch-icon.png',
-  },
-  manifest: '/manifest.json',
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
+    siteName: "Peezy",
+    type: "website",
+    images: ["/og/home.png"],
   },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={inter.variable}>
-      <body className="antialiased">
-        <SmoothScroll>{children}</SmoothScroll>
+    <html lang="en">
+      <body>
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-[14px] focus:bg-yellow focus:px-4 focus:py-2 focus:font-medium"
+        >
+          Skip to content
+        </a>
+        <Header />
+        <main id="main">{children}</main>
+        <Footer />
+        <Analytics />
       </body>
     </html>
   );
