@@ -6,11 +6,54 @@
  */
 
 export const hero = {
-  h1: "The app that makes moving manageable.",
-  sub: "15 questions and a video of your home. Every day until moving day, planned like a pro.",
-  cta: "Get your plan",
+  h1Line1: "Moving has a hundred hidden tasks.",
+  h1Line2: "Peezy finds yours.",
+  sub: "Peezy is a personal moving expert for your iPhone. Answer a 90-second assessment about your dates, your home, and your household, and it builds a plan that only contains your move — then walks you through it, one calm task at a time.",
+  cta: "Download on the App Store",
+  ctaSecondary: "See how it works",
   proof: "Built by a 9-year moving pro.",
 } as const;
+
+/** V4 stats strip — exact copy. `unit` renders small inside the numeral ("90sec"). */
+export const stats = [
+  { n: "90", unit: "sec", label: "From first question to a finished assessment" },
+  { n: "60+", unit: "", label: "Move tasks your answers are checked against" },
+  { n: "1", unit: "", label: "Task in front of you at any moment" },
+  // The space inside "2 a.m." below is U+00A0 so the label never splits there (V4.1).
+  { n: "0", unit: "", label: "Spreadsheets, sticky notes, or 2 a.m. lists" },
+] as const;
+
+/** V3.1 problem section — exact copy. */
+export const problem = {
+  kicker: "The problem",
+  header: "The boxes were never the hard part.",
+  para1:
+    "The hard part is everything nobody tells you to do. Protecting the deposit. Transferring the pharmacy. The daycare notice you owed thirty days ago. The internet that takes two weeks to install and the freezer that takes two days to defrost. Every one of them has a deadline — set by someone who never met you.",
+  para2:
+    "So you keep a list, and the list does what lists do: it grows, at 2 a.m., in your head. That is the job Peezy takes off your hands.",
+} as const;
+
+/** V4 how-it-works — exact copy; the full three-step explanation. */
+export const howItWorks = {
+  kicker: "How it works",
+  rows: [
+    {
+      title: "Answer the assessment",
+      line: "Ninety seconds of questions about your move: where, when, who is coming with you, what you own, and what you’d rather hire out.",
+    },
+    {
+      title: "Get your plan",
+      line: "Peezy checks your answers against more than sixty move tasks and builds the ones you actually need into a timeline — every deadline already in the right order, nothing generic left in.",
+    },
+    {
+      title: "Do the next right thing",
+      line: "Open the app each day and handle the one task in front of you. Most take minutes, because the form, the phone number, or the deadline is already there. Check it off. Close the app.",
+    },
+  ],
+} as const;
+
+/** V4 — kicker opening the deep screenshot chapters (#features). */
+export const featuresKicker = "What you get";
 
 export const block1 = {
   header: "One video. Zero guesswork.",
@@ -33,9 +76,8 @@ export const block1b = {
 } as const;
 
 export const block2 = {
-  kicker: "The scan is day one. Peezy runs the rest.",
-  header: "Three tasks a day until moving day.",
-  body: "Peezy works backward from your move date and hands you each morning’s three tasks — the ones that actually matter now, never the ones that can wait. Finish them and you’re on schedule. No giant list, no guessing what’s urgent, no moving targets.",
+  header: "One task in front of you. Always.",
+  body: "Peezy works backward from your move date and drops three tasks a day in your lap — one at a time. Finish the one in front of you and the next appears. No giant list, no guessing what’s urgent, no moving targets.",
 } as const;
 
 export const block3 = {
@@ -56,21 +98,7 @@ export const closing = {
 } as const;
 
 /**
- * Vignette microcopy — NOT page prose. Spec-supplied chip labels plus the
- * in-app lines the vignettes need. Ground rule: these lines describe what
- * the app tells or asks the user — never an action taken on their behalf.
+ * Step kicker labels — the ONLY copy addition the redesign spec allows
+ * (numerals plus a ≤3-word kicker label per step). Rendered uppercase by CSS.
  */
-export const vignette = {
-  chips: ["Sofa · 3-seat", "Boxes · est. 42", "Truck · 15 ft"],
-  boxOne: "Box 1 — Kitchen",
-  tasks: [
-    { title: "Reserve the elevator at the new building", meta: "10 min" },
-    { title: "Schedule your internet install", meta: "15 min" },
-    { title: "Pack: hall closet", meta: "Box 12 of 42" },
-  ],
-  chat: {
-    reply: "Finding a new one",
-    answer:
-      "When you call, ask three things: openings for your move week, how long the waitlist runs, and which records transfer from your current center.",
-  },
-} as const;
+export const stepLabels = ["The scan", "One at a time", "The walkthrough"] as const;

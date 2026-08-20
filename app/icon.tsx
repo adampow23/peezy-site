@@ -6,7 +6,7 @@ export const size = { width: 64, height: 64 };
 export const contentType = "image/png";
 
 export default async function Icon() {
-  const switzer = await readFile(join(process.cwd(), "app/fonts/Switzer-Semibold.otf"));
+  const archivo = await readFile(join(process.cwd(), "app/fonts/Archivo-ExtraBold.ttf"));
 
   return new ImageResponse(
     (
@@ -18,9 +18,8 @@ export default async function Icon() {
           alignItems: "center",
           justifyContent: "center",
           backgroundColor: "#FFC233",
-          borderRadius: 14,
-          color: "#17150E",
-          fontFamily: "Switzer",
+          color: "#201E1D",
+          fontFamily: "Archivo",
           fontSize: 42,
           paddingBottom: 4,
         }}
@@ -28,6 +27,6 @@ export default async function Icon() {
         P
       </div>
     ),
-    { ...size, fonts: [{ name: "Switzer", data: switzer, weight: 600, style: "normal" }] }
+    { ...size, fonts: [{ name: "Archivo", data: archivo, weight: 800, style: "normal" }] }
   );
 }

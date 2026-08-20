@@ -6,7 +6,7 @@ export const size = { width: 180, height: 180 };
 export const contentType = "image/png";
 
 export default async function AppleIcon() {
-  const switzer = await readFile(join(process.cwd(), "app/fonts/Switzer-Semibold.otf"));
+  const archivo = await readFile(join(process.cwd(), "app/fonts/Archivo-ExtraBold.ttf"));
 
   return new ImageResponse(
     (
@@ -18,8 +18,8 @@ export default async function AppleIcon() {
           alignItems: "center",
           justifyContent: "center",
           backgroundColor: "#FFC233",
-          color: "#17150E",
-          fontFamily: "Switzer",
+          color: "#201E1D",
+          fontFamily: "Archivo",
           fontSize: 112,
           paddingBottom: 10,
         }}
@@ -27,6 +27,6 @@ export default async function AppleIcon() {
         P
       </div>
     ),
-    { ...size, fonts: [{ name: "Switzer", data: switzer, weight: 600, style: "normal" }] }
+    { ...size, fonts: [{ name: "Archivo", data: archivo, weight: 800, style: "normal" }] }
   );
 }

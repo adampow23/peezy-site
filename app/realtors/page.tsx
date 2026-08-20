@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import Section from "@/components/Section";
 import Prose from "@/components/Prose";
 import { FOUNDER_EMAIL } from "@/lib/site";
@@ -34,7 +33,7 @@ export default function Realtors() {
           </p>
           <p>
             And if any vendor booked through Peezy doesn&rsquo;t deliver, Peezy makes it right. That&rsquo;s the Peezy
-            Pinky Promise. <Link href="/promise">Read it →</Link>
+            Pinky Promise.
           </p>
           <h2>Why agents gift Peezy</h2>
           <p>

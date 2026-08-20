@@ -35,35 +35,38 @@ export default function About() {
           <h2>So I built the thing I kept wishing existed.</h2>
           <p>
             Peezy asks about your actual move — your dates, your home, your family, your stuff — and builds a plan
-            that&rsquo;s yours. Then it feeds you that plan a few tasks at a time, in the right order, with every step
-            spelled out. And for the tasks that involve hiring companies — movers, internet, cleaning — Peezy&rsquo;s
-            concierge does the coordination for you.
+            that&rsquo;s yours. Then it feeds you that plan one task at a time, in the right order, with every step
+            spelled out. And for the tasks that involve hiring — movers, internet, cleaning — Peezy walks you into the
+            conversation prepared: what to ask, what a fair answer sounds like, and the traps I watched people fall
+            into for nine years.
           </p>
           <h2>Boring on purpose.</h2>
           <p>
             You&rsquo;ll notice Peezy doesn&rsquo;t have streaks, badges, or celebration animations every time you
             breathe. That&rsquo;s deliberate. You&rsquo;re not here to be entertained; you&rsquo;re here to get to the
-            other side of your move with your sanity and your deposit intact. The app decides what&rsquo;s next, you
-            tap, it gets done. Boring is the promise.
+            other side of your move with your sanity and your deposit intact. The app decides what&rsquo;s next; you
+            handle the one thing in front of you. Boring is the promise.
           </p>
-          <h2>Accountability isn&rsquo;t a feature. It&rsquo;s the whole point.</h2>
+          <h2>Protection, not perfection.</h2>
           <p>
-            The reason moving horror stories exist is that vendors face no consequences. A bad review disappears into a
-            pile of good ones. So Peezy runs differently: vendors who don&rsquo;t deliver lose access to our users.
-            Permanently, if it comes to that. If someone we connected you with doesn&rsquo;t make it right, we will.
-            It&rsquo;s called the Peezy Pinky Promise, and it&rsquo;s the foundation everything else is built on.{" "}
-            <Link href="/promise">Read the promise →</Link>
+            Think about why people hire a realtor, an accountant, a lawyer. Not to squeeze out a perfect outcome — to
+            make sure the worst one never happens. That&rsquo;s what an expert is for, and moving is the one expensive,
+            high-stakes project almost everyone does without one. Peezy exists to be that layer: the guide who&rsquo;s
+            seen a thousand moves and knows where yours can go wrong before it does.
           </p>
           <h2>The details, for the detail-oriented.</h2>
           <p>
             Peezy is built and operated by Peezy Move LLC, a Missouri company based in Kansas City. It&rsquo;s an
-            independent product — no moving company owns us, no vendor pays for placement in your plan. When Peezy
-            recommends a service, it&rsquo;s because your move calls for it.
+            independent product — no moving company owns us, and nobody can buy a spot in your plan. Your tasks come
+            from your answers, nothing else. When a task involves signing up for a service (like internet), Peezy may
+            earn a referral commission — every detail of that is on the{" "}
+            <Link href="/disclosure">Affiliate Disclosure page</Link>.
           </p>
           <p>
             Questions, ideas, or a moving horror story you need to get off your chest?{" "}
             <Link href="/contact">Contact page →</Link> I read everything.
           </p>
+          <p>— Adam Powell, Founder · Peezy Move LLC</p>
         </Prose>
       </div>
     </Section>

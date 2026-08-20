@@ -1,24 +1,17 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
-import { Newsreader } from "next/font/google";
+import { Archivo } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { hero } from "@/content/landing";
 import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
-const switzer = localFont({
-  src: "./fonts/Switzer-Variable.woff2",
-  weight: "100 900",
-  display: "optional",
-  variable: "--font-switzer",
-});
-
-const newsreader = Newsreader({
+const archivo = Archivo({
   subsets: ["latin"],
-  style: ["italic"],
+  style: ["normal", "italic"],
   display: "swap",
-  variable: "--font-newsreader",
+  variable: "--font-archivo",
 });
 
 export const metadata: Metadata = {
@@ -27,22 +20,22 @@ export const metadata: Metadata = {
     default: "Peezy — The app that makes moving manageable.",
     template: "%s — Peezy",
   },
-  description:
-    "15 questions and a video of your home. Every day until moving day, planned like a pro.",
+  description: hero.sub,
   alternates: { canonical: "./" },
   openGraph: {
     siteName: "Peezy",
     type: "website",
+    description: hero.sub,
   },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${switzer.variable} ${newsreader.variable}`}>
+    <html lang="en" className={archivo.variable}>
       <body>
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-[14px] focus:bg-yellow focus:px-4 focus:py-2 focus:font-medium"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:bg-yellow focus:px-4 focus:py-2 focus:font-medium"
         >
           Skip to content
         </a>

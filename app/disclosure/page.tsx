@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import Section from "@/components/Section";
 import Prose from "@/components/Prose";
 import { SUPPORT_EMAIL } from "@/lib/site";
@@ -24,8 +23,7 @@ export default function Disclosure() {
           <p>
             More importantly, it never changes what we recommend. The tasks and services in your plan are driven by your
             move — your address, your dates, your answers — not by which company pays a commission. Providers cannot pay
-            to appear in your plan, and any provider that fails our users loses access to them, commission or not.{" "}
-            <Link href="/promise">The Peezy Pinky Promise →</Link>
+            to appear in your plan, and any provider that fails our users loses access to them, commission or not.
           </p>
           <p>
             If you have questions about how this works, email <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>.
