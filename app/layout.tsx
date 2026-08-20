@@ -1,28 +1,44 @@
 import type { Metadata } from "next";
+import localFont from "next/font/local";
+import { Newsreader } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
+const switzer = localFont({
+  src: "./fonts/Switzer-Variable.woff2",
+  weight: "100 900",
+  display: "optional",
+  variable: "--font-switzer",
+});
+
+const newsreader = Newsreader({
+  subsets: ["latin"],
+  style: ["italic"],
+  display: "swap",
+  variable: "--font-newsreader",
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Peezy — Your Moving Concierge",
+    default: "Peezy — The app that makes moving manageable.",
     template: "%s — Peezy",
   },
   description:
-    "Peezy learns your move in three minutes, builds your exact plan, and hands you a few tasks a day until it's done. The ones you dread? Peezy handles those for you.",
+    "15 questions and a video of your home. Every day until moving day, planned like a pro.",
+  alternates: { canonical: "./" },
   openGraph: {
     siteName: "Peezy",
     type: "website",
-    images: ["/og/home.png"],
   },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${switzer.variable} ${newsreader.variable}`}>
       <body>
         <a
           href="#main"

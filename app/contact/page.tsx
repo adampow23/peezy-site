@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function Contact() {
   return (
     <Section eyebrow="Contact" className="pt-32 md:pt-40">
-      <h1 className="font-display h-2 max-w-[20ch]">Talk to a human. We insist.</h1>
+      <h1 className="font-display display-2 max-w-[20ch]">Talk to a human. We insist.</h1>
       <div className="mt-10">
         <Prose>
           <p>Questions about your move, your account, or Peezy itself:</p>

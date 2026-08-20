@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 export default function Terms() {
   return (
     <Section eyebrow="Legal" className="pt-32 md:pt-40">
-      <h1 className="font-display h-2">Terms of Service</h1>
+      <h1 className="font-display display-2">Terms of Service</h1>
       <div className="mt-10">
         <Prose>
           <p>Last updated: August 1, 2026</p>

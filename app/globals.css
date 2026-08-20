@@ -1,6 +1,4 @@
 @import "tailwindcss";
-@import "@fontsource-variable/bricolage-grotesque";
-@import "@fontsource-variable/instrument-sans";
 
 @theme {
   --color-ink: #17150E;
@@ -11,12 +9,17 @@
   --color-yellow: #FFC233;
   --color-yellow-deep: #E3A70F;
   --color-ok: #1F7A3D;
-  --font-display: "Bricolage Grotesque Variable", -apple-system, "Helvetica Neue", Arial, sans-serif;
-  --font-body: "Instrument Sans Variable", -apple-system, "Helvetica Neue", Arial, sans-serif;
   --shadow-lift: 0 24px 60px -24px rgb(23 21 14 / 0.18);
   --radius-btn: 14px;
-  --radius-card: 20px;
-  --radius-device: 44px;
+  --radius-card: 16px;
+  --radius-device: 54px;
+}
+
+/* Fonts arrive as CSS variables from next/font (layout.tsx). */
+@theme inline {
+  --font-display: var(--font-switzer), ui-sans-serif, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --font-body: var(--font-switzer), ui-sans-serif, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --font-accent: var(--font-newsreader), Georgia, "Times New Roman", serif;
 }
 
 html { scroll-behavior: smooth; }
@@ -24,56 +27,132 @@ body {
   background: var(--color-paper);
   color: var(--color-ink);
   font-family: var(--font-body);
-  font-size: 1rem;
-  line-height: 1.65;
+  font-size: 1.0625rem;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
-.font-display { font-family: var(--font-display); font-weight: 800; letter-spacing: -0.02em; }
+/* ---------- Type roles ---------- */
+.font-display { font-family: var(--font-display); font-weight: 600; letter-spacing: -0.02em; }
 
-.h-hero { font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 1.05; }
-.h-2 { font-size: clamp(1.9rem, 3.5vw, 2.75rem); line-height: 1.1; }
-.h-3 { font-size: 1.375rem; font-weight: 600; line-height: 1.3; }
+/* "display-" prefix avoids Tailwind's h-* height utilities (h-2 = height: 8px). */
+.display-hero { font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 1.04; text-wrap: balance; }
+.display-2 { font-size: clamp(2rem, 3.5vw, 3rem); line-height: 1.1; text-wrap: balance; }
 .body-lg { font-size: 1.1875rem; line-height: 1.6; }
 .eyebrow {
-  font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.04em;
-  text-transform: uppercase; color: var(--color-yellow-deep);
+  font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--color-ink-soft);
 }
+.accent-serif { font-family: var(--font-accent); font-style: italic; letter-spacing: 0; }
+.tnum { font-variant-numeric: tabular-nums; }
 
 :focus-visible { outline: 2px solid var(--color-ink); outline-offset: 3px; border-radius: 2px; }
 
-/* ---------- Reveal (the one scroll effect) ---------- */
-.reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1), transform 0.55s cubic-bezier(0.22, 1, 0.36, 1); transition-delay: var(--reveal-delay, 0ms); }
+/* ---------- CTA button ---------- */
+.btn-cta {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--color-yellow); color: var(--color-ink);
+  font-weight: 600; font-size: 1.0625rem;
+  border-radius: var(--radius-btn); padding: 0.875rem 1.75rem;
+  box-shadow: 0 1px 2px rgb(23 21 14 / 0.08);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.btn-cta:hover { transform: translateY(-1px); box-shadow: 0 8px 20px -8px rgb(23 21 14 / 0.28); }
+.btn-cta:active { transform: translateY(0); box-shadow: 0 1px 2px rgb(23 21 14 / 0.08); }
+.btn-cta-sm { font-size: 0.9375rem; padding: 0.5rem 1.125rem; }
+
+/* ---------- Quiet links: accent underline slides in ---------- */
+.link-ul { position: relative; text-decoration: none; }
+.link-ul::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -2px; height: 1px;
+  background: var(--color-yellow-deep);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.2s ease;
+}
+.link-ul:hover::after, .link-ul:focus-visible::after { transform: scaleX(1); }
+
+/* ---------- Reveal (the universal scroll effect) ---------- */
+.reveal {
+  opacity: 0; transform: translateY(16px);
+  transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1), transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
 .reveal.is-in { opacity: 1; transform: none; }
 
-/* ---------- Hero load sequence ---------- */
-@keyframes maskUp { from { clip-path: inset(0 0 100% 0); transform: translateY(20px); } to { clip-path: inset(0 0 -10% 0); transform: none; } }
+/* ---------- Hero load sequence ----------
+   The H1 is the LCP element: it renders immediately, never animated.
+   Nav fades first, supporting copy next, the vignette draw is the finale. */
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes riseIn { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
-.hero-line { animation: maskUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
-.hero-line-2 { animation-delay: 90ms; }
-.hero-after { animation: fadeIn 0.6s ease both; animation-delay: 350ms; }
-.hero-device { animation: riseIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; animation-delay: 500ms; }
+.nav-fade { animation: fadeIn 0.18s ease both; }
+.hero-after { animation: fadeIn 0.55s ease both; animation-delay: 250ms; }
+.hero-device { animation: riseIn 0.65s cubic-bezier(0.22, 1, 0.36, 1) both; animation-delay: 350ms; }
 
-/* ---------- Section 5 checkmark draw ---------- */
-.check-path { stroke-dasharray: 26; stroke-dashoffset: 26; }
-.reveal.is-in .check-path { animation: drawCheck 0.4s ease-out forwards; animation-delay: 150ms; }
-@keyframes drawCheck { to { stroke-dashoffset: 0; } }
+/* ---------- Hero vignette: room draws itself, chips settle ---------- */
+/* Paths use pathLength="1" so one dasharray rule draws them all. */
+.sketch path, .sketch rect, .sketch line, .sketch circle {
+  stroke-dasharray: 1; stroke-dashoffset: 1;
+  animation: sketchDraw 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: calc(600ms + var(--draw-order, 0) * 140ms);
+}
+@keyframes sketchDraw { to { stroke-dashoffset: 0; } }
+.chip-in {
+  opacity: 0; transform: translateY(10px);
+  animation: chipIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: calc(1400ms + var(--chip-order, 0) * 160ms);
+}
+@keyframes chipIn { to { opacity: 1; transform: none; } }
 
-/* ---------- FAQ panel ---------- */
-.faq-panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.25s cubic-bezier(0.22, 1, 0.36, 1); }
-.faq-panel[data-open="true"] { grid-template-rows: 1fr; }
-.faq-panel > div { overflow: hidden; }
-.faq-chevron { transition: transform 0.2s ease; }
-[aria-expanded="true"] .faq-chevron { transform: rotate(180deg); }
+/* ---------- Device frame: rounded, thin bezel, no notch ---------- */
+.phone {
+  border-radius: var(--radius-device);
+  border: 1px solid var(--color-line);
+  background: var(--color-surface);
+  padding: 10px;
+  box-shadow: var(--shadow-lift);
+}
+.phone-screen {
+  border-radius: calc(var(--radius-device) - 10px);
+  border: 1px solid var(--color-line);
+  background: var(--color-paper);
+  overflow: hidden;
+  position: relative;
+  height: 100%;
+}
+
+/* ---------- Chips ---------- */
+.chip {
+  display: inline-flex; align-items: center; gap: 0.5ch;
+  background: var(--color-surface); border: 1px solid var(--color-line);
+  border-radius: 999px; padding: 0.375rem 0.875rem;
+  font-size: 0.875rem; font-weight: 500; white-space: nowrap;
+  box-shadow: 0 1px 2px rgb(23 21 14 / 0.05);
+}
+.chip-sm { font-size: 0.8125rem; padding: 0.25rem 0.75rem; }
+
+/* ---------- Block 2: the unreadable master list ---------- */
+.fog-list {
+  filter: blur(1.3px) grayscale(0.5);
+  opacity: 0.75;
+  mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
+}
 
 /* ---------- Header ---------- */
 .header-solid { background: color-mix(in srgb, var(--color-paper) 92%, transparent); backdrop-filter: blur(12px); border-bottom: 1px solid var(--color-line); }
 
+/* ---------- No JS: reveals must never hide content ---------- */
+@media (scripting: none) {
+  .reveal { opacity: 1; transform: none; }
+}
+
+/* ---------- Reduced motion: land on the final frame ---------- */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; transition: none; }
-  .hero-line, .hero-line-2, .hero-after, .hero-device { animation: none; }
-  .check-path { stroke-dashoffset: 0; animation: none; }
-  .faq-panel, .faq-chevron { transition: none; }
+  .nav-fade, .hero-after, .hero-device { animation: none; }
+  .sketch path, .sketch rect, .sketch line, .sketch circle { animation: none; stroke-dashoffset: 0; }
+  .chip-in { animation: none; opacity: 1; transform: none; }
+  .btn-cta, .link-ul::after { transition: none; }
 }

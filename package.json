@@ -7,8 +7,6 @@
     "start": "next start"
   },
   "dependencies": {
-    "@fontsource-variable/bricolage-grotesque": "^5.2.0",
-    "@fontsource-variable/instrument-sans": "^5.2.0",
     "@vercel/analytics": "^1.4.0",
     "next": "^15.3.0",
     "react": "^19.0.0",

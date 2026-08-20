@@ -1,28 +1,30 @@
 import Link from "next/link";
+import { SUPPORT_EMAIL } from "@/lib/site";
 
-const nav = [
-  { href: "/about", label: "About" },
-  { href: "/realtors", label: "For Realtors" },
-  { href: "/promise", label: "The Promise" },
-  { href: "/#faq", label: "FAQ" },
-  { href: "/contact", label: "Contact" },
+const links = [
   { href: "/privacy", label: "Privacy" },
   { href: "/terms", label: "Terms" },
-  { href: "/disclosure", label: "Disclosure" },
+  { href: "/about", label: "About" },
+  { href: "/disclosure", label: "Affiliate Disclosure" },
+  { href: "/contact", label: "Contact" },
 ];
 
+/** Quiet, small, single row on desktop. */
 export default function Footer() {
   return (
     <footer className="border-t border-line">
-      <div className="mx-auto max-w-[1200px] px-6 py-12 md:px-10">
-        <nav aria-label="Footer" className="flex flex-wrap gap-x-8 gap-y-3">
-          {nav.map((l) => (
-            <Link key={l.href} href={l.href} className="text-[0.9rem] text-ink-soft hover:text-ink">
+      <div className="mx-auto flex max-w-[1200px] flex-col gap-4 px-6 py-10 text-[0.8125rem] text-ink-soft md:flex-row md:items-center md:justify-between md:px-10">
+        <p>© 2026 Peezy Move LLC · Kansas City, MO</p>
+        <nav aria-label="Footer" className="flex flex-wrap items-center gap-x-6 gap-y-2">
+          {links.map((l) => (
+            <Link key={l.href} href={l.href} className="link-ul hover:text-ink">
               {l.label}
             </Link>
           ))}
+          <a href={`mailto:${SUPPORT_EMAIL}`} className="link-ul hover:text-ink">
+            {SUPPORT_EMAIL}
+          </a>
         </nav>
-        <p className="mt-8 text-[0.8125rem] text-ink-soft">© 2026 Peezy Move LLC · Kansas City, MO</p>
       </div>
     </footer>
   );

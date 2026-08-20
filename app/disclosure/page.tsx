@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function Disclosure() {
   return (
     <Section eyebrow="Disclosure" className="pt-32 md:pt-40">
-      <h1 className="font-display h-2 max-w-[20ch]">Affiliate Disclosure</h1>
+      <h1 className="font-display display-2 max-w-[20ch]">Affiliate Disclosure</h1>
       <div className="mt-10">
         <Prose>
           <p>

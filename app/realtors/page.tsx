@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function Realtors() {
   return (
     <Section eyebrow="For Realtors" className="pt-32 md:pt-40">
-      <h1 className="font-display h-2 max-w-[24ch]">Every closing gift ends up in a drawer. Except this one.</h1>
+      <h1 className="font-display display-2 max-w-[24ch]">Every closing gift ends up in a drawer. Except this one.</h1>
       <div className="mt-10">
         <Prose>
           <p>

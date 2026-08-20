@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 export default function Privacy() {
   return (
     <Section eyebrow="Legal" className="pt-32 md:pt-40">
-      <h1 className="font-display h-2">Privacy Policy</h1>
+      <h1 className="font-display display-2">Privacy Policy</h1>
       <div className="mt-10">
         <Prose>
           <p>Last updated: August 1, 2026</p>

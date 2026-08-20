@@ -5,14 +5,16 @@ export default function Section({
   eyebrow,
   children,
   className = "",
+  "aria-labelledby": ariaLabelledby,
 }: {
   id?: string;
   eyebrow?: string;
   children: ReactNode;
   className?: string;
+  "aria-labelledby"?: string;
 }) {
   return (
-    <section id={id} className={`py-24 md:py-36 ${className}`}>
+    <section id={id} aria-labelledby={ariaLabelledby} className={`py-24 md:py-36 ${className}`}>
       <div className="mx-auto max-w-[1200px] px-6 md:px-10">
         {eyebrow && <p className="eyebrow mb-4">{eyebrow}</p>}
         {children}
