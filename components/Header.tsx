@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { APP_STORE_URL } from "@/lib/site";
+import { APP_STORE_URL, PREORDER } from "@/lib/site";
 
 /** V4 nav: flat, solid bg, constant bottom hairline.
  *  Wordmark left; section anchors + yellow CTA right. */
@@ -18,7 +18,7 @@ export default function Header() {
             What you get
           </a>
           <a href={APP_STORE_URL} className="btn-cta btn-cta-sm">
-            Get the app
+            {PREORDER ? "Pre-order" : "Get the app"}
           </a>
         </nav>
       </div>

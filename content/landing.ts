@@ -5,11 +5,12 @@
  * (the spec's two-bolds-per-block law); they are part of the locked copy.
  */
 
+// V4.5: the store CTAs in hero/close are Apple's official badge artwork
+// (components/AppStoreBadge.tsx) — their wording is Apple's, not copy here.
 export const hero = {
   h1Line1: "Moving has a hundred hidden tasks.",
   h1Line2: "Peezy finds yours.",
   sub: "Peezy is a personal moving expert for your iPhone. Answer a 90-second assessment about your dates, your home, and your household, and it builds a plan that only contains your move — then walks you through it, one calm task at a time.",
-  cta: "Download on the App Store",
   ctaSecondary: "See how it works",
   proof: "Built by a 9-year moving pro.",
 } as const;
@@ -94,7 +95,6 @@ export const block3 = {
 export const closing = {
   header: "Moving day is coming either way.",
   sub: "Get your plan before the boxes pile up.",
-  cta: "Get your plan",
 } as const;
 
 /**

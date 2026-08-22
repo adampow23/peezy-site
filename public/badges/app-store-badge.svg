@@ -1,9 +1,0 @@
-<!-- PLACEHOLDER — replace this file with Apple's official "Download on the
-     App Store" badge SVG from Apple Marketing Resources (unmodified).
-     No code changes needed: same filename, same location. -->
-<svg xmlns="http://www.w3.org/2000/svg" width="156" height="52" viewBox="0 0 156 52" role="img" aria-label="Download on the App Store">
-  <rect width="156" height="52" rx="10" fill="#17150E"/>
-  <rect x="0.5" y="0.5" width="155" height="51" rx="9.5" fill="none" stroke="#55523F" stroke-opacity="0.4"/>
-  <text x="78" y="21" text-anchor="middle" font-family="-apple-system, Helvetica, Arial, sans-serif" font-size="10" fill="#FBFAF6" opacity="0.85">Download on the</text>
-  <text x="78" y="38" text-anchor="middle" font-family="-apple-system, Helvetica, Arial, sans-serif" font-size="16" font-weight="600" fill="#FBFAF6">App Store</text>
-</svg>

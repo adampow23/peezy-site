@@ -1,6 +1,7 @@
 import Section from "@/components/Section";
 import Reveal from "@/components/Reveal";
 import DeviceShot from "@/components/DeviceShot";
+import AppStoreBadge from "@/components/AppStoreBadge";
 import { hero, stats, problem, howItWorks, featuresKicker, block1, block1b, block2, block3, closing, stepLabels } from "@/content/landing";
 import { SITE_URL, APP_STORE_URL } from "@/lib/site";
 
@@ -49,9 +50,7 @@ export default function Home() {
           <div className="hero-after mt-10 md:mt-12">
             <p className="body-lg max-w-[52ch] text-ink-soft">{hero.sub}</p>
             <div className="mt-8 flex flex-wrap items-center gap-4">
-              <a href={APP_STORE_URL} className="btn-cta">
-                {hero.cta}
-              </a>
+              <AppStoreBadge />
               <a href="/#how" className="btn-ghost">
                 {hero.ctaSecondary}
               </a>
@@ -251,9 +250,7 @@ export default function Home() {
           </h2>
           <p className="body-lg mt-5 text-paper/70">{closing.sub}</p>
           <div className="mt-9 flex justify-center">
-            <a href={APP_STORE_URL} className="btn-cta">
-              {closing.cta}
-            </a>
+            <AppStoreBadge />
           </div>
         </Reveal>
       </Section>
