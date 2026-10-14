@@ -19,7 +19,7 @@ export default function Terms() {
       <h1 className="font-display display-2">Terms of Service</h1>
       <div className="mt-10">
         <Prose>
-          <p>Last updated: August 1, 2026</p>
+          <p>Last updated: October 13, 2026</p>
           <p>
             These terms govern your use of the Peezy app and website, operated by Peezy Move LLC (&ldquo;Peezy,&rdquo;
             &ldquo;we,&rdquo; &ldquo;us&rdquo;). By using Peezy, you agree to them.
@@ -42,6 +42,34 @@ export default function Terms() {
             Some features require a paid upgrade (Peezy+), purchased through the App Store. Pricing and terms are
             presented in the app before any charge. Purchases are subject to Apple&rsquo;s payment terms; refunds are
             handled through the App Store.
+          </p>
+          <h2>Text messages</h2>
+          <p>
+            <strong>What you get.</strong> If you opt in, Peezy texts you your daily moving tasks, reminders, follow-up
+            questions about a task, and replies to questions you text back. Messages are specific to your move. We
+            don&rsquo;t send marketing or promotional texts.
+          </p>
+          <p>
+            <strong>Opting in.</strong> You opt in by entering your mobile number in the app and agreeing to receive
+            texts from Peezy. Consent isn&rsquo;t a condition of buying anything from Peezy.
+          </p>
+          <p>
+            <strong>Frequency and cost.</strong> Frequency varies with your plan — typically one task message a day plus
+            replies to what you send. Message and data rates may apply.
+          </p>
+          <p>
+            <strong>Opting out.</strong> Reply <strong>STOP</strong> to any message to cancel at any time. You&rsquo;ll
+            get one confirmation and no further texts unless you opt back in by replying <strong>START</strong> or
+            turning texts back on in the app.
+          </p>
+          <p>
+            <strong>Help.</strong> Reply <strong>HELP</strong> to any message or email{" "}
+            <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>. Wireless carriers aren&rsquo;t liable for delayed
+            or undelivered messages.
+          </p>
+          <p>
+            <strong>Privacy.</strong> Your number and consent are handled as described in our Privacy Policy. No mobile
+            information will be shared with third parties or affiliates for marketing or promotional purposes.
           </p>
           <h2>Your responsibilities</h2>
           <p>

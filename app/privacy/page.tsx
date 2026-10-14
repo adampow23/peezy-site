@@ -20,7 +20,7 @@ export default function Privacy() {
       <h1 className="font-display display-2">Privacy Policy</h1>
       <div className="mt-10">
         <Prose>
-          <p>Last updated: August 1, 2026</p>
+          <p>Last updated: October 13, 2026</p>
           <p>
             This policy explains what information Peezy (operated by Peezy Move LLC) collects, why we collect it, and
             how we handle it. The short version: we collect what&rsquo;s needed to run your move, we don&rsquo;t sell
@@ -40,6 +40,11 @@ export default function Privacy() {
             and build your inventory list. The resulting list belongs to you and is used to size your move.
           </p>
           <p>
+            <strong>Mobile number (optional).</strong> If you choose to get your tasks by text, you give us your mobile
+            number and your consent to text you. When you reply, we keep what you send so we can update your tasks and
+            answer your questions.
+          </p>
+          <p>
             <strong>Usage information.</strong> Basic analytics about how the app and website are used, so we can fix
             what&rsquo;s broken and improve what isn&rsquo;t.
           </p>
@@ -48,6 +53,27 @@ export default function Privacy() {
             To build your plan, schedule your tasks, coordinate services you request, notify you about your move, and
             operate and improve Peezy. When you ask the concierge to handle a task — like gathering mover quotes — we
             share the details needed to complete that task with the relevant service providers, and only those details.
+          </p>
+          <h2>Text messages</h2>
+          <p>
+            If you opt in, we text you your daily moving tasks, reminders, follow-up questions about a task, and answers
+            to the questions you text back. These are part of the service you signed up for; we don&rsquo;t send
+            marketing texts. We use Twilio to send and receive them, and Twilio handles your number and messages only to
+            deliver them on our behalf.
+          </p>
+          <p>
+            <strong>
+              No mobile information will be shared with third parties or affiliates for marketing or promotional
+              purposes.
+            </strong>{" "}
+            Your mobile number and your opt-in consent are never sold, rented, or shared with anyone for their own
+            marketing. Sharing with the service providers we use to deliver your texts (like Twilio) is the only
+            exception.
+          </p>
+          <p>
+            Reply <strong>STOP</strong> to any message to opt out, or turn texts off in the app&rsquo;s settings.
+            You&rsquo;ll get one confirmation and then nothing more unless you opt back in. Reply <strong>HELP</strong>{" "}
+            for help. Message and data rates may apply; message frequency varies with your plan.
           </p>
           <h2>What we don&rsquo;t do</h2>
           <p>
