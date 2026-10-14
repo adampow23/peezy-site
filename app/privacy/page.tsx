@@ -58,17 +58,17 @@ export default function Privacy() {
           <p>
             If you opt in, we text you your daily moving tasks, reminders, follow-up questions about a task, and answers
             to the questions you text back. These are part of the service you signed up for; we don&rsquo;t send
-            marketing texts. We use Twilio to send and receive them, and Twilio handles your number and messages only to
-            deliver them on our behalf.
+            marketing texts. Messages are delivered through Twilio, our messaging service provider, which processes them
+            only on our behalf.
           </p>
           <p>
             <strong>
               No mobile information will be shared with third parties or affiliates for marketing or promotional
               purposes.
             </strong>{" "}
-            Your mobile number and your opt-in consent are never sold, rented, or shared with anyone for their own
-            marketing. Sharing with the service providers we use to deliver your texts (like Twilio) is the only
-            exception.
+            All the categories above exclude text messaging originator opt-in data and consent; this information will
+            not be shared with any third parties. Your mobile number and your opt-in consent are never sold, rented, or
+            given to anyone for their own marketing.
           </p>
           <p>
             Reply <strong>STOP</strong> to any message to opt out, or turn texts off in the app&rsquo;s settings.
