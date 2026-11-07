@@ -5,7 +5,7 @@ export const APP_STORE_URL =
 
 /** Pre-order phase. Release day: flip to false (badges become "Download on the
  *  App Store", nav CTA becomes "Get the app"), then push. */
-export const PREORDER = true;
+export const PREORDER = false;
 export const SUPPORT_EMAIL = "support@peezymove.com";
 export const FOUNDER_EMAIL = "adam@peezymove.com";
 
