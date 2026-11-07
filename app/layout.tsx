@@ -1,10 +1,7 @@
 import type { Metadata } from "next";
 import { Archivo } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import { hero } from "@/content/landing";
-import { SITE_URL } from "@/lib/site";
+import { SITE_URL, HOME_DESCRIPTION } from "@/lib/site";
 import "./globals.css";
 
 const archivo = Archivo({
@@ -17,15 +14,15 @@ const archivo = Archivo({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Peezy — The app that makes moving manageable.",
+    default: "Peezy — Know exactly what to pack today.",
     template: "%s — Peezy",
   },
-  description: hero.sub,
+  description: HOME_DESCRIPTION,
   alternates: { canonical: "./" },
   openGraph: {
     siteName: "Peezy",
     type: "website",
-    description: hero.sub,
+    description: HOME_DESCRIPTION,
   },
 };
 
@@ -39,9 +36,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Skip to content
         </a>
-        <Header />
-        <main id="main">{children}</main>
-        <Footer />
+        {children}
         <Analytics />
       </body>
     </html>
