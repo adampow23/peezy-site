@@ -8,3 +8,6 @@ export const APP_STORE_URL =
 export const PREORDER = true;
 export const SUPPORT_EMAIL = "support@peezymove.com";
 export const FOUNDER_EMAIL = "adam@peezymove.com";
+
+export const HOME_DESCRIPTION =
+  "Record a short video of each room. Peezy PackRx turns what's actually in your home into a day-by-day packing plan, so you know what to pack today and nothing's left for the night before.";

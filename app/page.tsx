@@ -1,20 +1,64 @@
-import Section from "@/components/Section";
-import Reveal from "@/components/Reveal";
-import DeviceShot from "@/components/DeviceShot";
-import AppStoreBadge from "@/components/AppStoreBadge";
-import { hero, stats, problem, howItWorks, featuresKicker, block1, block1b, block2, block3, closing, stepLabels } from "@/content/landing";
-import { SITE_URL, APP_STORE_URL } from "@/lib/site";
+import Image from "next/image";
+import Link from "next/link";
+import Phone from "@/components/home/Phone";
+import Umbrella from "@/components/home/Umbrella";
+import { CtaStack, CtaInline } from "@/components/home/Cta";
+import { SITE_URL, APP_STORE_URL, FOUNDER_EMAIL } from "@/lib/site";
+import "./home.css";
 
-function StepNum({ n }: { n: number }) {
+const I = {
+  home: <path d="M3 10.5L12 3l9 7.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1zM12 10.5v6M9 13.5h6" />,
+  video: (
+    <>
+      <rect x="2" y="6" width="14" height="12" rx="3" />
+      <path d="M16 10.5l5-3v9l-5-3z" />
+    </>
+  ),
+  box: <path d="M3 7l9-4 9 4-9 4zM3 7v10l9 4 9-4V7M12 11v10" />,
+  cart: (
+    <>
+      <path d="M1 3h4l2 10h11l3-7H6" />
+      <circle cx="9" cy="19" r="1.6" />
+      <circle cx="17" cy="19" r="1.6" />
+    </>
+  ),
+  pin: (
+    <>
+      <path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z" />
+      <circle cx="12" cy="9.5" r="2.5" />
+    </>
+  ),
+  bolt: <path d="M13 2L4 14h7l-1 8 9-12h-7z" />,
+  dots: (
+    <>
+      <circle cx="5" cy="12" r="1.8" fill="#6BFFE3" stroke="none" />
+      <circle cx="12" cy="12" r="1.8" fill="#6BFFE3" stroke="none" />
+      <circle cx="19" cy="12" r="1.8" fill="#6BFFE3" stroke="none" />
+    </>
+  ),
+};
+
+function Icon({ d, size = 22 }: { d: React.ReactNode; size?: number }) {
   return (
-    <p>
-      <span className="step-num" aria-hidden="true">
-        0{n}
-      </span>
-      <span className="sr-only">Step {n}</span>
-    </p>
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      {d}
+    </svg>
   );
 }
+
+const STEPS = [
+  { n: 1, title: "Add a room", icon: I.home },
+  { n: 2, title: "Record the room", icon: I.video },
+  { n: 3, title: "Confirm the items", icon: null },
+];
+
+const FEATURES = [
+  { title: "Packing", icon: I.box },
+  { title: "Hiring help", icon: I.cart },
+  { title: "Address changes", icon: I.pin },
+  { title: "Utilities & internet", icon: I.bolt },
+  { title: "Miscellaneous", icon: I.dots },
+];
 
 export default function Home() {
   const jsonLd = {
@@ -26,234 +70,146 @@ export default function Home() {
         url: SITE_URL,
         address: { "@type": "PostalAddress", addressLocality: "Kansas City", addressRegion: "MO", addressCountry: "US" },
       },
-      {
-        "@type": "SoftwareApplication",
-        name: "Peezy",
-        operatingSystem: "iOS",
-        applicationCategory: "LifestyleApplication",
-        url: APP_STORE_URL,
-      },
+      { "@type": "SoftwareApplication", name: "Peezy", operatingSystem: "iOS", applicationCategory: "LifestyleApplication", url: APP_STORE_URL },
     ],
   };
 
   return (
-    <>
+    <div className="home">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <div className="blob blob-1" aria-hidden="true" />
+      <div className="blob blob-2" aria-hidden="true" />
+      <div className="blob blob-3" aria-hidden="true" />
 
-      {/* ---------- Hero (bg, rebuilt V3.1) ---------- */}
-      <section aria-labelledby="hero-heading" className="pt-28 pb-16 md:pt-36 md:pb-24">
-        <div className="mx-auto max-w-[1200px] px-6 md:px-10">
-          <h1 id="hero-heading" className="font-display display-hero">
-            <span className="hero-line">{hero.h1Line1}</span>
-            <span className="hero-line hero-line-2">{hero.h1Line2}</span>
-          </h1>
-          <div className="hero-after mt-10 md:mt-12">
-            <p className="body-lg max-w-[52ch] text-ink-soft">{hero.sub}</p>
-            <div className="mt-8 flex flex-wrap items-center gap-4">
-              <AppStoreBadge />
-              <a href="/#how" className="btn-ghost">
-                {hero.ctaSecondary}
-              </a>
-            </div>
-            <p className="mt-5 text-[0.9375rem] text-ink-soft">{hero.proof}</p>
-          </div>
-        </div>
-      </section>
+      <div className="wrap">
+        <header className="nav">
+          <Link href="/" className="wordmark" aria-label="Peezy home">peezy</Link>
+          <CtaInline />
+        </header>
 
-      {/* ---------- Stats strip (surface) ---------- */}
-      <Section aria-label="Peezy by the numbers" className="border-t border-line bg-surface">
-        <div className="grid grid-cols-2 gap-x-8 gap-y-12 md:grid-cols-4 md:gap-x-0">
-          {stats.map((s, i) => (
-            <Reveal
-              key={s.n}
-              delay={i * 90}
-              className={
-                i === 0
-                  ? "md:pr-10"
-                  : i === 3
-                    ? "md:border-l md:border-line md:pl-10"
-                    : "md:border-l md:border-line md:px-10"
-              }
-            >
-              <p className="stat-num">
-                {s.n}
-                {s.unit ? <span className="stat-unit">{s.unit}</span> : null}
-              </p>
-              <p className="eyebrow mt-4 max-w-[22ch] leading-[1.4] [text-wrap:balance]">{s.label}</p>
-            </Reveal>
-          ))}
-        </div>
-      </Section>
+        <main id="main">
+          {/* 01 Hero */}
+          <section className="hero" aria-labelledby="hero-h">
+            <p className="eyebrow eyebrow-teal">Your day-by-day packing plan</p>
+            <h1 id="hero-h" className="h-hero">
+              Know exactly what to pack <span className="dim">today.</span>
+            </h1>
+            <p className="lede">
+              Record a short video of each room. Peezy PackRx turns what&rsquo;s actually in your home into a day-by-day packing plan, so you
+              know what to pack today and nothing&rsquo;s left for the night before.
+            </p>
+            <CtaStack className="hero-cta" />
 
-      {/* ---------- The problem (bg) ---------- */}
-      <Section aria-labelledby="problem-heading" className="border-t border-line">
-        <Reveal>
-          <p className="eyebrow">{problem.kicker}</p>
-        </Reveal>
-        <Reveal delay={90}>
-          <h2 id="problem-heading" className="font-display display-2 mt-10 max-w-[22ch] md:mt-14">
-            {problem.header}
-          </h2>
-          <p className="body-lg mt-8 max-w-[62ch] text-ink-soft">{problem.para1}</p>
-          <p className="body-lg mt-6 max-w-[62ch] text-ink-soft">{problem.para2}</p>
-        </Reveal>
-      </Section>
-
-      {/* ---------- How it works (surface) ---------- */}
-      <Section id="how" aria-labelledby="how-heading" className="border-t border-line bg-surface">
-        <Reveal>
-          <p id="how-heading" className="eyebrow">
-            {howItWorks.kicker}
-          </p>
-        </Reveal>
-        <div className="mt-10 md:mt-14">
-          {howItWorks.rows.map((row, i) => (
-            <Reveal key={row.title} delay={i * 90}>
-              <div className="grid grid-cols-[3rem_1fr] items-baseline gap-x-4 gap-y-2 border-t border-line py-6 md:grid-cols-[4rem_16rem_1fr] md:py-7">
-                <span className="toc-num" aria-hidden="true">
-                  0{i + 1}
-                </span>
-                <span className="font-display text-[1.25rem]">
-                  <span className="sr-only">Step {i + 1}: </span>
-                  {row.title}
-                </span>
-                <p className="body-lg col-span-2 max-w-[56ch] text-ink-soft md:col-span-1">{row.line}</p>
+            <div className="hero-card">
+              <div className="hero-card-blob a" aria-hidden="true" />
+              <div className="hero-card-blob b" aria-hidden="true" />
+              <div className="lockup">
+                <p className="lockup-peezy">Peezy</p>
+                <Image src="/home/packrx.png" alt="PackRx" width={2010} height={705} className="lockup-mark" priority />
+                <p className="lockup-copy">
+                  <b>One of Peezy&rsquo;s core features.</b> PackRx decides what gets packed, in what order, and on which day, so the whole job
+                  is figured out before you tape the first box. Nothing to plan, nothing to guess.
+                </p>
               </div>
-            </Reveal>
-          ))}
-        </div>
-      </Section>
-
-      {/* ---------- What you get — part opener (bg) ---------- */}
-      <section id="features" aria-label="What you get" className="border-t border-line">
-        <div className="mx-auto max-w-[1200px] px-6 py-10 md:px-10 md:py-14">
-          <Reveal>
-            <p className="eyebrow">{featuresKicker}</p>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ---------- Feature 01 — The scan (surface) ---------- */}
-      <Section id="step-01" aria-labelledby="scan-heading" className="border-t border-line bg-surface">
-        <Reveal>
-          <p className="eyebrow">{stepLabels[0]}</p>
-        </Reveal>
-        <div className="mt-10 grid items-center gap-14 md:mt-14 md:grid-cols-[1.1fr_0.9fr]">
-          <div>
-            <Reveal>
-              <StepNum n={1} />
-              <h2 id="scan-heading" className="font-display display-2 mt-8 max-w-[16ch]">
-                {block1.header}
-              </h2>
-              <p className="body-lg mt-6 max-w-[52ch] text-ink-soft">{block1.body}</p>
-            </Reveal>
-            <div className="mt-10 flex flex-col gap-6">
-              {block1.split.map((s, i) => (
-                <Reveal key={s.lead} delay={i * 90}>
-                  <p className="body-lg max-w-[52ch] text-ink-soft">
-                    <span className="font-bold text-ink">{s.lead}</span> {s.rest}
-                  </p>
-                </Reveal>
-              ))}
+              <div className="phones">
+                <Phone kind="scan" />
+                <svg className="phones-arrow" viewBox="0 0 84 40" fill="none" stroke="#0D1A33" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M6 20h70M58 6l18 14-18 14" />
+                </svg>
+                <Phone kind="pack" />
+              </div>
             </div>
-          </div>
-          <Reveal delay={90} className="justify-self-center md:justify-self-end">
-            <DeviceShot
-              src="/media/step1-inventory.webp"
-              alt="Peezy inventory after a room scan"
-              width={840}
-              height={1722}
-              className="w-[min(72vw,280px)] md:w-[300px]"
-            />
-          </Reveal>
-        </div>
-        {/* Closing beat — Block 1B folded into step 01 */}
-        <Reveal>
-          <div className="mt-16 grid gap-6 border-t border-line pt-10 md:mt-20 md:grid-cols-[0.9fr_1.1fr] md:gap-14">
-            <h3 className="font-display max-w-[18ch] text-[1.5rem] leading-tight md:text-[1.75rem]">
-              {block1b.header}
-            </h3>
-            <p className="body-lg max-w-[52ch] text-ink-soft">{block1b.body}</p>
-          </div>
-        </Reveal>
-      </Section>
+          </section>
 
-      {/* ---------- Feature 02 — One at a time (bg) ---------- */}
-      <Section id="step-02" aria-labelledby="plan-heading" className="border-t border-line">
-        <Reveal>
-          <p className="eyebrow">{stepLabels[1]}</p>
-        </Reveal>
-        <div className="mt-10 grid items-center gap-14 md:mt-14 md:grid-cols-[0.9fr_1.1fr]">
-          <Reveal delay={90} className="order-2 justify-self-center md:order-1 md:justify-self-start">
-            <DeviceShot
-              src="/media/step2-today.webp"
-              alt="A single Peezy task: forward my mail"
-              width={840}
-              height={1722}
-              className="w-[min(72vw,280px)] md:w-[300px]"
-            />
-          </Reveal>
-          <div className="order-1 md:order-2">
-            <Reveal>
-              <StepNum n={2} />
-              <h2 id="plan-heading" className="font-display display-2 mt-8 max-w-[18ch]">
-                {block2.header}
-              </h2>
-              <p className="body-lg mt-6 max-w-[52ch] text-ink-soft">{block2.body}</p>
-            </Reveal>
-          </div>
-        </div>
-      </Section>
+          {/* 02 How it works */}
+          <section className="how" id="how" aria-labelledby="how-h">
+            <h2 id="how-h" className="h2">How does PackRx work?</h2>
+            <ol className="steps">
+              {STEPS.map((s, i) => (
+                <li key={s.n} className="step">
+                  {i > 0 && (
+                    <svg className="step-arrow" viewBox="0 0 150 28" fill="none" stroke="rgba(13,26,51,0.32)" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d="M4 14h140M132 4l12 10-12 10" />
+                    </svg>
+                  )}
+                  <div className="step-disc">
+                    {s.icon ? (
+                      <Icon d={s.icon} size={72} />
+                    ) : (
+                      <svg width="72" height="72" viewBox="0 0 24 24" fill="none" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                        <rect x="3" y="3" width="18" height="18" rx="5" fill="#57C778" />
+                        <path d="M7.5 12.5l3 3 6-6.5" stroke="#FFFFFF" strokeWidth="2.2" />
+                      </svg>
+                    )}
+                    <span className="step-n">{s.n}</span>
+                  </div>
+                  <h3 className="step-title">{s.title}</h3>
+                </li>
+              ))}
+            </ol>
+            <p className="repeat">
+              <svg viewBox="0 0 1104 84" fill="none" stroke="rgba(13,26,51,0.22)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M925 8V50Q925 66 909 66H712M392 66H195Q179 66 179 50V10M170 19l9-9 9 9" />
+              </svg>
+              <span>Repeat for every room</span>
+            </p>
+          </section>
 
-      {/* ---------- Feature 03 — The walkthrough (surface) ---------- */}
-      <Section id="step-03" aria-labelledby="guide-heading" className="border-t border-line bg-surface">
-        <Reveal>
-          <p className="eyebrow">{stepLabels[2]}</p>
-        </Reveal>
-        <div className="mt-10 grid items-center gap-14 md:mt-14 md:grid-cols-[1.1fr_0.9fr]">
-          <div>
-            <Reveal>
-              <StepNum n={3} />
-              <h2 id="guide-heading" className="font-display display-2 mt-8">
-                <span className="block">{block3.headerLine1}</span>
-                <span className="block">{block3.headerLine2}</span>
-              </h2>
-              <p className="body-lg mt-6 max-w-[52ch] text-ink-soft">{block3.bodyBefore}</p>
-              <blockquote className="mt-6 max-w-[46ch] border-l-2 border-line pl-5 text-[1.25rem] leading-snug">
-                {block3.blockquote}
-              </blockquote>
-              <p className="body-lg mt-6 max-w-[52ch] text-ink-soft">
-                {block3.bodyAfterStart}
-                <span className="font-bold text-ink">{block3.bodyAfterLead}</span>
-                {block3.bodyAfterRest}
-              </p>
-              <p className="accent-italic mt-8 text-[1.3125rem] text-ink-soft">{block3.contrast}</p>
-            </Reveal>
-          </div>
-          <Reveal delay={90} className="justify-self-center md:justify-self-end">
-            <DeviceShot
-              src="/media/step3-walkthrough.webp"
-              alt="Peezy walking through storage options"
-              width={840}
-              height={1722}
-              className="w-[min(72vw,280px)] md:w-[300px]"
-            />
-          </Reveal>
-        </div>
-      </Section>
+          {/* 03 What else */}
+          <section className="else" id="features" aria-labelledby="else-h">
+            <h2 id="else-h" className="h2">What else can Peezy do?</h2>
+            <p className="lede lede-center">
+              Moving is a dozen jobs on a dozen deadlines, no two moves alike, and no playbook to borrow. And when it rains, it pours.
+            </p>
+            <Umbrella />
+            <ul className="tiles">
+              {FEATURES.map((f) => (
+                <li key={f.title} className="tile">
+                  <span className="tile-icon">
+                    <Icon d={f.icon} />
+                  </span>
+                  <p className="tile-title">{f.title}</p>
+                </li>
+              ))}
+            </ul>
+            <CtaStack note={false} className="else-cta" />
+          </section>
 
-      {/* ---------- Close (ink) ---------- */}
-      <Section aria-labelledby="closing-heading" className="section-ink">
-        <Reveal className="text-center">
-          <h2 id="closing-heading" className="font-display display-2 mx-auto max-w-[20ch]">
-            {closing.header}
-          </h2>
-          <p className="body-lg mt-5 text-paper/70">{closing.sub}</p>
-          <div className="mt-9 flex justify-center">
-            <AppStoreBadge />
+          {/* 04 Founder */}
+          <section className="founder" aria-labelledby="founder-h">
+            <Image src="/home/adam.png" alt="Adam Powell" width={160} height={160} className="founder-photo" />
+            <p className="eyebrow eyebrow-mint">Why I built this</p>
+            <h2 id="founder-h" className="founder-quote">
+              &ldquo;For years I watched people scramble through move day and walk into their new home defeated.&rdquo;
+            </h2>
+            <div className="founder-meta">
+              <p className="founder-name">Adam Powell, Founder</p>
+              <p className="founder-path">Truck team &rarr; Move coordinator &rarr; Franchise partner</p>
+              <p className="founder-cred">500+ moves on the truck. 1,200+ coordinated. And the guy who got the call on a few thousand more.</p>
+            </div>
+          </section>
+
+          {/* 05 Final CTA */}
+          <section className="final" aria-labelledby="final-h">
+            <h2 id="final-h" className="h-final">
+              From overwhelmed to packed, <span className="dim">one box at a time.</span>
+            </h2>
+            <CtaStack className="final-cta" />
+          </section>
+        </main>
+
+        <footer className="foot">
+          <div className="foot-left">
+            <span className="wordmark wordmark-sm">peezy</span>
+            <span>&copy; 2026 Peezy Move LLC &middot; Kansas City</span>
           </div>
-        </Reveal>
-      </Section>
-    </>
+          <nav className="foot-right" aria-label="Footer">
+            <a href={`mailto:${FOUNDER_EMAIL}`}>{FOUNDER_EMAIL}</a>
+            <Link href="/privacy">Privacy</Link>
+            <Link href="/terms">Terms</Link>
+          </nav>
+        </footer>
+      </div>
+    </div>
   );
 }
